@@ -1,0 +1,46 @@
+{
+    "configurations": [
+        {
+            "name": "MSPM0G3507_FreeRTOS",
+            "includePath": [
+                "${workspaceFolder}",
+                "${workspaceFolder}/Debug",
+                "${workspaceFolder}/Debug/syscfg",
+                "${workspaceFolder}/APP",
+                "${workspaceFolder}/APP/src",
+                "${workspaceFolder}/APP/header",
+                "${workspaceFolder}/APP/oled",
+                "${workspaceFolder}/Drivers/MSPM0",
+                "${workspaceFolder}/Middlewares/FreeRTOS/Source/include",
+                "${workspaceFolder}/Middlewares/FreeRTOS/Source/portable/TI_ARM_CLANG/ARM_CM0",
+                "D:/diansai/tools/mspm0_sdk_2_10_00_04/source",
+                "D:/diansai/tools/mspm0_sdk_2_10_00_04/source/third_party/CMSIS/Core/Include",
+                "D:/diansai/tools/ccs/ccs/tools/compiler/ti-cgt-armllvm_5.1.1.LTS/include/c"
+            ],
+            "defines": [
+                "__MSPM0G3507__",
+                "__USE_SYSCONFIG__"
+            ],
+            "compilerPath": "D:/diansai/tools/ccs/ccs/tools/compiler/ti-cgt-armllvm_5.1.1.LTS/bin/tiarmclang.exe",
+            "compilerArgs": [
+                "-mcpu=cortex-m0plus",
+                "-march=thumbv6m",
+                "-mthumb",
+                "-mfloat-abi=soft"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "intelliSenseMode": "windows-clang-arm",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    "${workspaceFolder}/Debug",
+                    "${workspaceFolder}/Debug/syscfg",
+                    "D:/diansai/tools/mspm0_sdk_2_10_00_04/source"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ],
+    "version": 4
+}

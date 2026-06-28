@@ -1,0 +1,15 @@
+# CCS build outputs
+Debug/
+Release/
+
+# Toolchain products
+*.o
+*.d
+*.d_raw
+*.out
+*.map
+*linkInfo.xml
+
+# Local editor noise
+.DS_Store
+Thumbs.db
