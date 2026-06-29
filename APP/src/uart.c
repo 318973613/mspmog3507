@@ -82,7 +82,7 @@ void uart0_init(void)
     DL_UART_Main_disableInterrupt(UART_0_INST, DL_UART_MAIN_INTERRUPT_TX);
     DL_UART_Main_clearInterruptStatus(UART_0_INST, DL_UART_MAIN_INTERRUPT_TX);
     NVIC_ClearPendingIRQ(UART_0_INST_INT_IRQN);
-    NVIC_SetPriority(UART_0_INST_INT_IRQN, IRQ_PRIORITY_UART_RX);
+    NVIC_SetPriority(UART_0_INST_INT_IRQN, IRQ_PRIORITY_UART_DEBUG);
     NVIC_EnableIRQ(UART_0_INST_INT_IRQN);
     if (primask == 0U) {
         __enable_irq();

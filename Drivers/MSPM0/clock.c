@@ -57,7 +57,7 @@ uint32_t mspm0_get_clock_ms(unsigned long *times)
  */
 void mspm0_delay_ms(unsigned long xms)
 {
-    if (xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED) {
+    if (xTaskGetSchedulerState() == taskSCHEDULER_RUNNING) {
         vTaskDelay(pdMS_TO_TICKS(xms));
         return;
     }
