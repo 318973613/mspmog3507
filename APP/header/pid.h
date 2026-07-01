@@ -20,6 +20,7 @@ typedef struct
 
 float pid_angle(PID_TypeDef*PID,float actual);
 void pid_init(PID_TypeDef *PID,float kp,float ki,float kd);
+void pid_reset(PID_TypeDef *PID);
 void pid_changeTarget(PID_TypeDef *PID,float target);
 float pid_compute(PID_TypeDef*PID,float actual);
 float pid_duoji(PID_TypeDef*PID,float actual);

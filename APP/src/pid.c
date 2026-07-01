@@ -20,6 +20,15 @@ void pid_init(PID_TypeDef *PID, float kp, float ki, float kd)
     PID->errorint = 0.0f;
 }
 
+void pid_reset(PID_TypeDef *PID)
+{
+    PID->target = 0.0f;
+    PID->error0 = 0.0f;
+    PID->error1 = 0.0f;
+    PID->error2 = 0.0f;
+    PID->errorint = 0.0f;
+}
+
 void pid_changeTarget(PID_TypeDef *PID, float target)
 {
     PID->target = pid_sanitize_float(target);

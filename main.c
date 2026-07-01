@@ -78,6 +78,7 @@ static void Board_Init(void)
     trctive_init();
     encoder_init();
     App_Motor_init();
+    car_control_init();
 }
 
 static void CreateApplicationTasks(void)
@@ -115,7 +116,11 @@ static void MotorControlTask(void *argument)
 
     while (1) {
         motor_getspeed(&encoder);
-        App_Motor_Proc();
+        if (car_control_is_running() != 0U) {
+            App_Motor_Proc();
+        } else {
+            App_Motor_Stop();
+        }
         vTaskDelayUntil(&lastWake, pdMS_TO_TICKS(MOTOR_TASK_PERIOD_MS));
     }
 }

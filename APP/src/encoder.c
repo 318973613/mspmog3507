@@ -36,6 +36,22 @@ void encoder_proc(void)
         }
 }
 
+void encoder_clear_counts(void)
+{
+    uint32_t primask = __get_PRIMASK();
+
+    __disable_irq();
+    encoder.left_count = 0;
+    encoder.right_count = 0;
+    encoder.lastcount_l = 0;
+    encoder.lastcount_r = 0;
+    encoder.left_MotorSpeed = 0.0f;
+    encoder.right_MotorSpeed = 0.0f;
+    if (primask == 0U) {
+        __enable_irq();
+    }
+}
+
 void motor_getspeed(encoderData_t * encoderdat)
 {
     int32_t left_count;

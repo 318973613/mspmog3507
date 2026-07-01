@@ -8,6 +8,7 @@ float out_l;
 float out_r;
 float angle_yaw;
 float angler;
+static volatile uint8_t s_motor_stopped = 0U;
  void car_turn(float arget);
 //初始化左右电机调速系统
 //
@@ -18,9 +19,26 @@ void App_Motor_init(void)
 	pid_init(&pid_angler,0.1,0,0);
 }
 
+void App_Motor_Stop(void)
+{
+    if (s_motor_stopped != 0U) {
+        return;
+    }
+
+    pid_reset(&pid_motor_l);
+    pid_reset(&pid_motor_r);
+    out_l = 0.0f;
+    out_r = 0.0f;
+    APP_PWM_Set_L(0.0f);
+    APP_PWM_Set_R(0.0f);
+    TB6612_MotorBrake();
+    s_motor_stopped = 1U;
+}
+
 //电机pid调控
 void App_Motor_Proc(void)  
 {
+    s_motor_stopped = 0U;
 	//通过编码器获取左右电机的旋转角速度
 	 omega_l =  encoder.left_MotorSpeed;
 	 omega_r =  encoder.right_MotorSpeed;

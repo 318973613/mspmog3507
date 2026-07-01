@@ -13,6 +13,7 @@ extern float out_l;
 extern float out_r;
 void App_Motor_init(void);  //初始化左右电机调速系统
 void App_Motor_Proc(void);  //电机pid速度环调控
+void App_Motor_Stop(void);
 void angle_Motor_Proc(void); //电机pid角度环控制
 void angle_Motor_LEFT(void);  //角度换左转
 void App_motor_SetOmega_L(float Omega); //设置左电机速度

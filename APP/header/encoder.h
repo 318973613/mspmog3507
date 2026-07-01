@@ -26,6 +26,7 @@ int32_t lastcount_r;         //上一次计数值
 extern encoderData_t encoder;
 void encoder_init(void);
 void encoder_proc(void);
+void encoder_clear_counts(void);
 void motor_getspeed(encoderData_t * encoderdat);
 
 #endif

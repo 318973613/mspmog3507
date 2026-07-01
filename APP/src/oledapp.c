@@ -1,17 +1,33 @@
 #include "oledapp.h"
-char buffer[50];
+
+static char buffer[32];
+
+static void oled_show_line(uint8_t page, const char *text)
+{
+    snprintf(buffer, sizeof(buffer), "%-16s", text);
+    OLED_ShowString(0, page, (uint8_t *) buffer, 8);
+}
 
 void oled_show(void)
 {
-    sprintf(buffer,"s_l:%.2f s_r:%.2f", encoder.left_MotorSpeed,encoder.right_MotorSpeed);
-    OLED_ShowString(0,0,(uint8_t *)buffer,8);
+    char line[32];
 
-    // sprintf(buffer,"A:%d-%d-%d-%d-%d-%d-%d-%d",Anolog[0],Anolog[1],Anolog[2],Anolog[3],Anolog[4],Anolog[5],Anolog[6],Anolog[7]);
-    // OLED_ShowString(0,1,(uint8_t *)buffer,8);
+    snprintf(line, sizeof(line), "M:%s CAL:%c",
+        car_control_get_mode_name(),
+        (trctive_is_calibrated() != 0U) ? 'Y' : 'N');
+    oled_show_line(0, line);
 
-    // sprintf(buffer,"W:%d-%d-%d-%d-%d-%d-%d-%d",white[0],white[1],white[2],white[3],white[4],white[5],white[6],white[7]);
-    // OLED_ShowString(0,3,(uint8_t *)buffer,8);
+    snprintf(line, sizeof(line), "L:%4.0f R:%4.0f",
+        encoder.left_MotorSpeed,
+        encoder.right_MotorSpeed);
+    oled_show_line(2, line);
 
-    // sprintf(buffer,"B:%d-%d-%d-%d-%d-%d-%d-%d",black[0],black[1],black[2],black[3],black[4],black[5],black[6],black[7]);
-    // OLED_ShowString(0,5,(uint8_t *)buffer,8);
+    snprintf(line, sizeof(line), "G:%02X B:%u",
+        trctive_get_digital(),
+        trctive_get_black_count());
+    oled_show_line(4, line);
+
+    snprintf(line, sizeof(line), "E:%d K1R K3S",
+        trctive_get_error_x10());
+    oled_show_line(6, line);
 }

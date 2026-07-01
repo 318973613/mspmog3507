@@ -45,17 +45,5 @@ uint8_t Key_Read(void)
 
 void led_task(void)
 {
-    switch (Key_Read()) {
-    case 1U:
-        LED1_TOGGLE();
-        break;
-    case 2U:
-        LED2_TOGGLE();
-        break;
-    case 3U:
-        LED3_TOGGLE();
-        break;
-    default:
-        break;
-    }
+    car_control_on_key(Key_Read());
 }
